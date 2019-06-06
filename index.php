@@ -1,9 +1,7 @@
-
-
 <?php
 
 
- include 'conection.php';
+ include 'db.php';
 
 $sql = "SELECT * FROM  students order by code, country";
 $result = $conn->query($sql);
@@ -11,15 +9,19 @@ $result = $conn->query($sql);
 
 <style>
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
-table, th, td {
-  border: 1px solid black;
+table,
+th,
+td {
+    border: 1px solid black;
 }
-th, td {
-  padding: 15px;
-  text-align: left;
+
+th,
+td {
+    padding: 15px;
+    text-align: left;
 }
 </style>
 
@@ -28,26 +30,25 @@ th, td {
 if ($result->num_rows > 0) {
 
   ?>
-    <table>
-      <th>Class </th>
-      <th>Name </th>
-      <th>Contry</th>
-     
+<table>
+    <th>Class </th>
+    <th>Name </th>
+    <th>Contry</th>
+
     <?php 
     while ($row = $result->fetch_assoc()) {
         $name = $row["name"];
         $country = $row["country"];
         $code = $row["code"];
         ?>
-         <tr>
+    <tr>
         <td><?=$code;?></td>
         <td><?=$name;?> </td>
         <td><?=$country;?></td>
-        </tr>
-     <?php      
+    </tr>
+    <?php      
     }
 } else {
     echo "0 results";
 }
 $conn->close();
-
